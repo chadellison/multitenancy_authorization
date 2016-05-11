@@ -18,7 +18,7 @@ class PermissionsService
     when store_admin? then store_admin_permissions
     when registered_user? then registered_user_permissions
     else
-      all_permissions
+      guest_permissions
     end
   end
 
@@ -45,7 +45,7 @@ class PermissionsService
       return true if controller == "items" && action.in?(%w(index show))
     end
 
-    def all_permissions
+    def guest_permissions
       return true if controller == "stores" && action == "index"
       return true if controller == "sessions" && action == "new"
       return true if controller == "sessions" && action == "create"
